@@ -1,15 +1,4 @@
-body {
-  /* background-color: black; */
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* body.night {
-  background-image: url('/images/bg-night.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
+@import './library.scss';
 
 .App {
   text-align: center;
@@ -145,6 +134,11 @@ button {
 
 .controls button {
   margin: 10px;
+}
+
+.volume-control {
+  width: 95%;
+  accent-color: #4A70A9;
 }
 
 .footer-container {

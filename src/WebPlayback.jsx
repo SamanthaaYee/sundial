@@ -84,6 +84,24 @@ function WebPlayback({ token }) {
     });
   };
 
+  // Volume state
+  const [volume, setVolume] = useState(0.5);
+
+  // When player is ready, get initial volume
+  useEffect(() => {
+    if (!player) return;
+    player.getVolume().then(vol => setVolume(vol));
+  }, [player]);
+
+  // Change volume (called by slider)
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    player.setVolume(newVolume).then(() => {
+      console.log('Volume set to:', newVolume);
+    });
+  };
+
     return (
       <div className="container liquid-glass">
           <div className="content-wrapper">
@@ -107,6 +125,14 @@ function WebPlayback({ token }) {
                       </button>
                       <button className="btn-spotify" onClick={nextTrack}>&gt;&gt;</button>
                   </div>
+                  <input className="volume-control"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                  />
               </div>
               </>
           )}
